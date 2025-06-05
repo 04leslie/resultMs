@@ -12,9 +12,12 @@ import Result from './pages/results/result.jsx'
 import SelectFaculty from './pages/students/SelectFaculty.jsx'
 import SelectDepart from './pages/students/SelectDepart.jsx'
 import AddStudent from './pages/students/AddStudent.jsx'
+import Login from './pages/login/Login.jsx'
+import Register from './pages/register/Register.jsx'
 const router = createBrowserRouter([
   {path:'/', element:<App />},
-  {path:'/about', element:<Card />},
+  {path:'/login', element:<Login />},
+  {path:'/register', element:<Register />},
   {path:'/about', element:<Card />},
   {path:'/session', element:<Session />},
   {path:'/dashboard', element:<AdminDashboard />},

@@ -1,5 +1,8 @@
 import React from 'react'
 
+const submit = () =>{
+    
+  }
 function Login() {
   return (
     <div className='form'>
@@ -14,6 +17,8 @@ function Login() {
           <input class="input" name="password" type="password" /><br/>
 
           <input type="submit" name="submit" value="Login" class="button"/>
+
+          <p>Admin doesnot have an account? <Link to='/register'>Click to Register!</Link></p>
         </form>
     </div>
   )
