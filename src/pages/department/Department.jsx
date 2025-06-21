@@ -1,57 +1,132 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Layout from '../../components/layout/Layout'
 
 function Department() {
+    const [name, setName] = useState('');
+    const [code, setCode] = useState('');
+    const [schoolId, setSchoolId] = useState('');
+    const [levelId, setLevelId] = useState('');
+    const [schools, setSchools] = useState([]);
+    const [levels, setLevels] = useState([]);
+    const [departments, setDepartments] = useState([]);
+
+    useEffect(() => {
+        // Fetch faculties and levels from the API
+        const fetchSchools = async () => {
+            const response = await axios.get('http://localhost:5000/api/schools'); // Adjust API endpoint
+            setSchools(response.data);
+        };
+
+        const fetchLevels = async () => {
+            const response = await axios.get('http://localhost:5000/api/levels'); // Adjust API endpoint
+            setLevels(response.data);
+        };
+        const fetchDepartments = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/departments');
+            setDepartments(response.data);
+        } catch (error) {
+            console.error('Error fetching departments:', error);
+        }
+        };
+
+        fetchSchools();
+        fetchLevels();
+        fetchDepartments();
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        
+        try {
+            const response = await axios.post('http://localhost:5000/api/departments', {
+                name,
+                dept_code: code,
+                school_id: parseInt(schoolId),
+                level_id: parseInt(levelId),
+            });
+            
+
+            // Clear form fields
+            setName('');
+            setCode('');
+            setSchoolId('');
+            setLevelId('');
+
+            // ✅ Fetch updated department list
+            const res = await axios.get('http://localhost:5000/api/departments');
+            setDepartments(res.data);
+            } catch (error) {
+             console.error('Error adding department:', error);
+            }
+    };
   return (
     <Layout>
         <div className='form create'>
-               <h2>Add a New Department</h2>
-              <form action="" method="post">
-                  <label for="">Name:</label><br/>
-                  <input class="input" name="name" type="text"/><br/>
-                  <label for="">Code:</label><br/>
-                  <input class="input" name="name" type="text" placeholder='e.g SWE'/><br/>
-                  <label for="">Faculty:</label><br/>
-                  <select id="faculty" className='input'>
-                      <option value="">-- Select Faculty --</option>
-                      <option value="health">School of Health</option>
-                      <option value="education">School of Education</option>
-                      <option value="engineering">School of Engineering</option>
-                      <option value="business">School of Business & Management Sciences</option>
-                  </select>
-                  <label for="">Level:</label><br/>
-                  <select name="" id="" className='input'>
-                    <option value="">-- Select Level --</option>
-                    <option value="1">Level 1</option>
-                    <option value="2">Level 2</option>
-                    <option value="3">Level 3</option>
-                  </select>
-                  <input type="submit" name="submit" value="Add" class="button"/>
-              </form>
+                <h2>Add a New Department</h2>
+                <form onSubmit={handleSubmit}>
+                    <div style={{display:'flex', alignItems:'center'}}>
+                        <label for="" style={{marginRight:'7px'}}>Name:</label>
+                        <input style={{marginRight:'10px'}} className="input" value={name} onChange={(e) => setName(e.target.value)} type="text" /><br />
+                        
+                        <label style={{marginRight:'7px'}} for="">Code:</label><br />
+                        <input className="input" value={code} onChange={(e) => setCode(e.target.value)} type="text" placeholder='e.g SWE' /><br />
+                        
+                    </div>
+                    <div style={{display:'flex', alignItems:'center'}}>
+                        <label style={{marginRight:'7px'}} htmlFor="faculty">Faculty:</label><br />
+                        <select value={schoolId} onChange={(e) => setSchoolId(e.target.value)} className='input' style={{marginRight:'10px'}}>
+                            <option value="">-- Select Faculty --</option>
+                            {schools.map(school => (
+                                <option key={school.id} value={school.id}>{school.name}</option>
+                            ))}
+                        </select>
+                        
+                        <label style={{marginRight:'7px'}} htmlFor="level">Level:</label><br />
+                        <select value={levelId} onChange={(e) => setLevelId(e.target.value)} className='input'>
+                        <option value="">-- Select Level --</option>
+                        {levels.map(level => (
+                            <option key={level.level_id} value={level.level_id}>{level.name}</option> // ✅ value should be level.id
+                        ))}
+                        </select>
+
+                    </div>
+                    
+                    <input type="submit" name="submit" value="Add" className="button" />
+                </form>
               </div>
         
               <div className="session-table">
                 <h2>Existing Departments</h2>
                 <table className='session-table'>
-                    <tr>
-                        <th>S/N</th>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Faculty</th>
-                        <th>Level</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                    <td>1</td>
-                    <td>Software Engineering</td>
-                    <td>SWE</td>
-                    <td>School of Engineering</td>
-                    <td>2</td>
-                    <td className='actions'>
-                      <button type="submit" className='view-button'>view</button>
-                      <button type="submit" className='delete-button'>Delete</button>
-                    </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>Faculty</th>
+                            <th>Level</th>
+                            <th>Created at</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {departments.map((department, index) => (
+                            <tr key={department.id}>
+                                <td>{index + 1}</td>
+                                <td>{department.name}</td>
+                                <td>{department.dept_code}</td>
+                                <td>{department.faculty}</td> {/* Assuming faculty name is included */}
+                                <td>{department.level}</td> {/* Assuming level name is included */}
+                                <td>{new Date(department.created_at).toLocaleString()}</td>
+                                <td className='actions'>
+                                    <button className='view-button'>View</button>
+                                    <button className='delete-button'>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
               </div>
     </Layout>

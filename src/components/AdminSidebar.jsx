@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faSchool } from '@fortawesome/free-solid-svg-icons'
@@ -7,9 +7,12 @@ import { faUserGraduate } from '@fortawesome/free-solid-svg-icons'
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import {faMessage} from '@fortawesome/free-solid-svg-icons'
 import Logo from '../assets/Logo.png'
 
 function AdminSidebar() {
+  const location = useLocation();
+
   return (
     <div>
       
@@ -18,28 +21,31 @@ function AdminSidebar() {
               <img src={Logo} alt="" />
             </div>
             
-          <Link className="section-d" to="/dashboard">
+          <Link className={`section-d ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
             <FontAwesomeIcon icon={faHouse} className='icon'/> Dashboard
           </Link>
 
-               <Link className="section" to="/session">
+               <Link className={`section ${location.pathname === "/session" ? "active" : ""}`} to="/session">
                 <FontAwesomeIcon icon={faCalendar} className='icon'/>  Sessions
               </Link>
 
-              <Link className="section" to="/department">
+              <Link className={`section ${location.pathname === "/department" ? "active" : ""}`} to="/department">
                 <FontAwesomeIcon icon={faSchool} className='icon'/> Departments
               </Link>
 
-              <Link className="section" to="/students">
+              <Link className={`section ${location.pathname === "/students" ? "active" : ""}`} to="/students">
                 <FontAwesomeIcon icon={faUserGraduate} className='icon'/> Students
               </Link>
   
-              <Link className="section" to="/results">
+              <Link className={`section ${location.pathname === "/courses" ? "active" : ""}`} to="/courses">
                 <FontAwesomeIcon icon={faBook} className='icon'/> Courses
               </Link>
 
-              <Link className="section">
+              <Link className={`section ${location.pathname === "/results" ? "active" : ""}`} to="/results">
               <FontAwesomeIcon icon={faFile} className='icon'/> Results
+              </Link>
+              <Link className={`section ${location.pathname === "/complaints" ? "active" : ""}`} to="/complaints">
+              <FontAwesomeIcon icon={faMessage} className='icon'/> Complaints
               </Link>
         </div>
     </div>

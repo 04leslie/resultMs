@@ -5,21 +5,26 @@ body{
 
 .content {
   margin-top: 40px;
-  margin-left: 230px;
+  margin-left: 220px;
+}
+.head{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .header{
   /* border-bottom: 1px solid rgb(160, 4, 4); */
   display: flex;
   align-items: center;
   justify-content: right;
-  width:100%;
   height: 70px;
   background-color: hsl(240, 5%, 93%);
 }
 .search{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 .search input{
   width: 350px;
@@ -62,11 +67,14 @@ background-color:rgb(193, 103, 103);
   place-self: center;
   padding: 20px 30px;
   background-color: white;
-  border: 1px solid hsl(231, 11%, 63%);
   border-radius: 3px;
   }
   .form a{
-    padding: 2% 38.5%;
+    text-decoration: none;
+    /* padding: 2% 38.5%; */
+  }
+  .form p{
+    text-align: center;
   }
   .form p, ::placeholder{
     color: hsl(231, 11%, 63%);
@@ -80,7 +88,7 @@ background-color:rgb(193, 103, 103);
     color: rgb(160, 4, 4);
   }
   .input{
-    margin: 8px 0 20px 0;
+    margin: 8px 0 15px 0;
     height: 28px;
     border: 1px solid hsl(231, 11%, 63%);
     border-radius: 3px;
@@ -144,7 +152,7 @@ color: rgb(160, 4, 4);
   padding: 5% 3%;
   border-radius: 2px;
 }
-.section:hover{
+.section:hover, .section.active{
   cursor: pointer;
   padding: 5% 3%;
   border-radius: 2px;
@@ -152,12 +160,10 @@ color: rgb(160, 4, 4);
   background-color: hsl(220, 10%, 94%);
 }
 
-.icon-d{
+.icon-d, .icon{
   margin-right: 10px;
 }
-.icon{
-  margin-right: 10px;
-}
+
 /* card styling */
 .card{
   padding: 1%;
@@ -259,17 +265,23 @@ button{
 .none{
   display: none;
 }
-.modal{
-  display: block;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.381);
-}
 .item{
-  display: flex;
-  padding: 10%;
-  align-items: center;
+  height: 70px;
   width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.item button{
+  padding: 8px 25px;
+  margin-right: 10px;
+}
+.item p{
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: hsl(240, 1.80%, 44.70%);
 }
