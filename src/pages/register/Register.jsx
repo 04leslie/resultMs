@@ -45,7 +45,7 @@ function Register() {
 
   return (
     <div className='form'>
-         <h1 style={{textAlign:'center', color:'rgb(160, 4, 4)'}}> Register</h1>
+         <h1 style={{textAlign:'center', color:'#343a40'}}> Register</h1>
         <p className='p'>Create an account to manage the system</p>
     
         <form action="" method="post">
@@ -62,7 +62,7 @@ function Register() {
             <input className="input" name="password" type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/><br/>
 
             <input type="submit" name="submit" value="Register" class="button"/>
-            <p style={{marginTop:'7px'}}>Admin already has an account? <Link to='/login' style={{color:'rgb(160, 4, 4)'}}>Click to Login!</Link></p>
+            <p style={{marginTop:'7px'}}>Admin already has an account? <Link to='/loginAdmin' style={{color:'#007bff'}}>Click to Login!</Link></p>
         </form>
 
         {message && <p>{message}</p>} {/* Display success message if exists */}

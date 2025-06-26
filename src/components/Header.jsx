@@ -8,7 +8,7 @@ function Header() {
       <div className='header'>
             <form className="search">
             <input type="text" placeholder="Search..." value=""/>
-              <button type="submit">Search</button>
+              <button className='button' type="submit">Search</button>
             </form>
       
       </div>

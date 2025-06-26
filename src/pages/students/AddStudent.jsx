@@ -7,6 +7,7 @@ function AddStudent() {
     { id: 1, matricule: '', name:'', email: '', contact: '' }
   ]);
 
+  const [loading, setLoading] = useState(false);
   const handleChange = (index, field, value) => {
     const newStudents = [...students];
     newStudents[index][field] = value;
@@ -93,7 +94,7 @@ function AddStudent() {
                 ))}
               </tbody>
         </table>
-        <p style={{textAlign:'center'}}><button style={{ marginTop:'10px'}} type="submit">Submit Students</button></p> {/* Submit button to handle form submission */}
+        <p style={{textAlign:'center'}}><button style={{ marginTop:'10px'}} className='addstudent-button' type="submit">{loading ? "Submitting..." : "Submit Students"}</button></p> {/* Submit button to handle form submission */}
       </form>
     </div>
  

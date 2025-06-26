@@ -21,7 +21,7 @@ function AdminSidebar() {
               <img src={Logo} alt="" />
             </div>
             
-          <Link className={`section-d ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
+          <Link className={`section ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
             <FontAwesomeIcon icon={faHouse} className='icon'/> Dashboard
           </Link>
 
@@ -46,6 +46,9 @@ function AdminSidebar() {
               </Link>
               <Link className={`section ${location.pathname === "/complaints" ? "active" : ""}`} to="/complaints">
               <FontAwesomeIcon icon={faMessage} className='icon'/> Complaints
+              </Link>
+              <Link className={`section ${location.pathname === "/complaints" ? "active" : ""}`} to="/complaints">
+              <FontAwesomeIcon  className='icon'/>
               </Link>
         </div>
     </div>

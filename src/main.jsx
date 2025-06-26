@@ -13,11 +13,14 @@ import SelectSchool from './pages/students/SelectSchool.jsx'
 import SelectDepart from './pages/students/SelectDepart.jsx'
 import AddStudent from './pages/students/AddStudent.jsx'
 import Login from './pages/login/Login.jsx'
+import LoginAdmin from './pages/login/LoginAdmin.jsx'
 import Register from './pages/register/Register.jsx'
 import Complaints from './pages/complaint/Complaints.jsx'
+import Courses from './pages/courses/Courses.jsx'
 const router = createBrowserRouter([
   {path:'/', element:<App />},
   {path:'/login', element:<Login />},
+  {path:'/loginAdmin', element:<LoginAdmin />},
   {path:'/register', element:<Register />},
   {path:'/about', element:<Card />},
   {path:'/session', element:<Session />},
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
   {path:'/selectdepart', element:<SelectDepart />},
   {path:'/addstudent', element:<AddStudent />},
   {path:'/complaints', element:<Complaints />},
+  {path:'/courses', element:<Courses />},
 ])
 
 createRoot(document.getElementById('root')).render(

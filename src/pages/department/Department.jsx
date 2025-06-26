@@ -66,31 +66,38 @@ function Department() {
         <div className='form create'>
                 <h2>Add a New Department</h2>
                 <form onSubmit={handleSubmit}>
-                    <div style={{display:'flex', alignItems:'center'}}>
-                        <label for="" style={{marginRight:'7px'}}>Name:</label>
-                        <input style={{marginRight:'10px'}} className="input" value={name} onChange={(e) => setName(e.target.value)} type="text" /><br />
+                    <div  className="form-group" >
+                        <div>
+                            <label for="" style={{marginRight:'7px'}}>Name:</label>
+                            <input style={{marginRight:'10px'}} className="input" value={name} onChange={(e) => setName(e.target.value)} type="text" /><br />
+                        </div>
                         
-                        <label style={{marginRight:'7px'}} for="">Code:</label><br />
-                        <input className="input" value={code} onChange={(e) => setCode(e.target.value)} type="text" placeholder='e.g SWE' /><br />
+                        <div>
+                            <label style={{marginRight:'7px'}} for="">Code:</label><br />
+                            <input className="input" value={code} onChange={(e) => setCode(e.target.value)} type="text" /><br />
+                        </div>
                         
                     </div>
-                    <div style={{display:'flex', alignItems:'center'}}>
-                        <label style={{marginRight:'7px'}} htmlFor="faculty">Faculty:</label><br />
-                        <select value={schoolId} onChange={(e) => setSchoolId(e.target.value)} className='input' style={{marginRight:'10px'}}>
-                            <option value="">-- Select Faculty --</option>
-                            {schools.map(school => (
-                                <option key={school.id} value={school.id}>{school.name}</option>
-                            ))}
-                        </select>
+                    <div className="form-group">
+                        <div>
+                            <label style={{marginRight:'7px'}} htmlFor="faculty">Faculty:</label><br />
+                            <select value={schoolId} onChange={(e) => setSchoolId(e.target.value)} className='input' style={{marginRight:'10px'}}>
+                                <option value="">-- Select Faculty --</option>
+                                {schools.map(school => (
+                                    <option key={school.id} value={school.id}>{school.name}</option>
+                                ))}
+                            </select>
+                        </div>
                         
-                        <label style={{marginRight:'7px'}} htmlFor="level">Level:</label><br />
-                        <select value={levelId} onChange={(e) => setLevelId(e.target.value)} className='input'>
-                        <option value="">-- Select Level --</option>
-                        {levels.map(level => (
-                            <option key={level.level_id} value={level.level_id}>{level.name}</option> // ✅ value should be level.id
-                        ))}
-                        </select>
-
+                        <div>
+                            <label style={{marginRight:'7px'}} htmlFor="level">Level:</label><br />
+                            <select value={levelId} onChange={(e) => setLevelId(e.target.value)} className='input'>
+                            <option value="">-- Select Level --</option>
+                            {levels.map(level => (
+                                <option key={level.level_id} value={level.level_id}>{level.name}</option> // ✅ value should be level.id
+                            ))}
+                            </select>
+                        </div>
                     </div>
                     
                     <input type="submit" name="submit" value="Add" className="button" />

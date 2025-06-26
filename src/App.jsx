@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Login from './pages/login/Login'
+import Choice from './pages/login/Choice'
 function App() {
   return (
     <div>
       
-      <Login />
+      <Choice />
     </div>
   )
 }
