@@ -97,7 +97,7 @@ function AddStudent() {
         <p style={{textAlign:'center'}}><button style={{ marginTop:'10px'}} className='addstudent-button' type="submit">{loading ? "Submitting..." : "Submit Students"}</button></p> {/* Submit button to handle form submission */}
       </form>
     </div>
- 
+    
     </Layout> 
   )
 }

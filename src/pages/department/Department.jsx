@@ -64,7 +64,7 @@ function Department() {
   return (
     <Layout>
         <div className='form create'>
-                <h2>Add a New Department</h2>
+                <h2>Add a New Department</h2><br /><br />
                 <form onSubmit={handleSubmit}>
                     <div  className="form-group" >
                         <div>
@@ -105,7 +105,13 @@ function Department() {
               </div>
         
               <div className="session-table">
-                <h2>Existing Departments</h2>
+              <div className="header">
+              <h2>Existing Departments</h2>
+              <form className="search">
+              <input type="text" placeholder="Search..." value=""/>
+                <button className='button' type="submit">Search</button>
+              </form>
+            </div>
                 <table className='session-table'>
                     <thead>
                         <tr>

@@ -5,13 +5,6 @@ function Header() {
 
     <div className="head">
       <p style={{ color: 'hsl(240, 1.80%, 44.70%)', marginLeft: '220px', fontWeight: 'bold'}}>RESULT MANAGEMENT SYSTEM | ADMIN DASHBOARD</p>
-      <div className='header'>
-            <form className="search">
-            <input type="text" placeholder="Search..." value=""/>
-              <button className='button' type="submit">Search</button>
-            </form>
-      
-      </div>
     </div>
   )
 }

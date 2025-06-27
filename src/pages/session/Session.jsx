@@ -19,25 +19,39 @@ function Session() {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // 1. Create the session
-  const res = await axios.post('http://localhost:5000/api/sessions', { name: sessionName });
+  try {
+    
+    const res = await axios.post('http://localhost:5000/api/sessions', { name: sessionName });
+    const sessionId = res.data.id; // newly created session ID
+    setSessionName('');
+    fetchSessions();
 
-  const sessionId = res.data.id; // newly created session ID
-  setSessionName('');
-  fetchSessions();
+    
+    await axios.post('http://localhost:5000/api/semesters', {
+      name: 'Semester 1',
+      session_id: sessionId,
+    });
 
-  // 2. Create 2 semesters for this session
-  await axios.post('http://localhost:5000/api/semesters', {
-    name: 'Semester 1',
-    session_id: sessionId,
-  });
+    await axios.post('http://localhost:5000/api/semesters', {
+      name: 'Semester 2',
+      session_id: sessionId,
+    });
 
-  await axios.post('http://localhost:5000/api/semesters', {
-    name: 'Semester 2',
-    session_id: sessionId,
-  });
+    
+    const levels = ['L100', 'L200', 'L300', 'L400', 'L500'];
+    for (const levelName of levels) {
+      await axios.post('http://localhost:5000/api/levels', {
+        name: levelName,
+        session_id: sessionId
+      });
+    }
 
-  alert('Session and Semesters created successfully!');
+    alert('Session, Semesters, and Levels created successfully!');
+  } catch (err) {
+    console.error('Error creating session:', err);
+    alert('Something went wrong. Check your backend.');
+  }
+
 };
   return (
     <Layout>
@@ -52,7 +66,13 @@ function Session() {
           </div>
       
           <div className="session-table">
-            <h2>Existing Sessions</h2>
+            <div className="header">
+              <h2>Existing Sessions</h2>
+              <form className="search">
+              <input type="text" placeholder="Search..." value=""/>
+                <button className='button' type="submit">Search</button>
+              </form>
+            </div>
             <table className='session-table'>
                 <tr>
                     <th>S/N</th>

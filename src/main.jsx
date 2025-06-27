@@ -5,10 +5,12 @@ import App from './App.jsx'
 import {createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Card from './pages/results/Card.jsx'
 import AdminDashboard from './pages/Admin-Dashboard/AdminDashboard.jsx'
+import StudentPanel from './pages/Admin-Dashboard/StudentPanel.jsx'
 import Session from './pages/session/session.jsx'
-import Department from './pages/department/department.jsx'
+import Department from './pages/department/Department.jsx'
 import Students from './pages/students/Students.jsx'
-import Result from './pages/results/result.jsx'
+import Result from './pages/results/Result.jsx'
+import ResultEntry from './pages/results/ResultEntry.jsx'
 import SelectSchool from './pages/students/SelectSchool.jsx'
 import SelectDepart from './pages/students/SelectDepart.jsx'
 import AddStudent from './pages/students/AddStudent.jsx'
@@ -27,12 +29,14 @@ const router = createBrowserRouter([
   {path:'/dashboard', element:<AdminDashboard />},
   {path:'/department', element:<Department />},
   {path:'/students', element:<Students />},
+  {path:'/studentpanel', element:<StudentPanel />},
   {path:'/results', element:<Result />},
   {path:'/selectschool', element:<SelectSchool />},
   {path:'/selectdepart', element:<SelectDepart />},
   {path:'/addstudent', element:<AddStudent />},
   {path:'/complaints', element:<Complaints />},
   {path:'/courses', element:<Courses />},
+  {path:'/resultEntry', element:<ResultEntry />},
 ])
 
 createRoot(document.getElementById('root')).render(

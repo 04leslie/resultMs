@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Item from '../../components/Item';
+import CourseItem from '../../components/CourseItem';
 import Layout from '../../components/layout/Layout'
 
 function Result() {
@@ -11,24 +11,22 @@ function Result() {
    const [semesterId, setSemesterId] = useState('');
    const [courses, setCourses] = useState([]);
    const [results, setResults] = useState([]);
-
   
   const [departments, setDepartments] = useState([]);
   const [levels, setLevels] = useState([]);
   const [sessions, setSessions] = useState([]);
   const [semesters, setSemesters] = useState([]);
-  
 
   // Fetch existing sessions
   useEffect(() => {
     const fetchSemester = async () => {
         const response = await axios.get('http://127.0.0.1:5000/api/semesters');
         setSemesters(response.data);
-  };
+    };
     const fetchSessions = async () => {
         const response = await axios.get('http://127.0.0.1:5000/api/sessions');
         setSessions(response.data);
-  };
+    };
     const fetchSchools = async () => {
         const response = await axios.get('http://127.0.0.1:5000/api/schools'); 
         setSchools(response.data);
@@ -40,9 +38,9 @@ function Result() {
     };
    
     fetchSemester();
+    fetchSessions();
     fetchSchools();
     fetchLevels();
-    fetchSessions();
   }, []);
 
    useEffect(() => {
@@ -55,48 +53,63 @@ function Result() {
           });
       }
       }, [levelId]);
- const fetchCourses = async () => {
-  try {
+    const fetchCourses = async () => {
+    try {
     const response = await axios.get(
       `http://localhost:5000/api/courses/by-faculty-level?facultyId=${schoolId}&levelId=${levelId}`
     );
     setCourses(response.data);
     setLoading(false);
-  } catch (err) {
+    } catch (err) {
     setError('Failed to load courses');
     setLoading(false);
-  }
-};
-
-  
+    }
+    };
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!departmentId || !levelId || !sessionId || !semesterId) {
+      alert("Please select all fields");
+      return;
+    }
+
+    localStorage.setItem('resultMeta', JSON.stringify({
+    departmentId,
+    levelId,
+    sessionId,
+    semesterId
+    }));
+
+    try {
+      const response = await axios.get('http://localhost:5000/api/courses/by-dept-session-semester', {
+        params: { departmentId, levelId, sessionId, semesterId }
+      });
+      setCourses(response.data);
+    } catch (err) {
+        console.error("Error fetching courses:", err);
+    }
+    };
+    const navigate = useNavigate();
+
+    const handleSelect = (courseId) => {
+        const meta = localStorage.getItem("resultMeta");
+    if (!meta) {
+        alert("Please fill all fields and click 'Get Courses' first.");
+        return;
+    }
+        localStorage.setItem("selectedCourseId", courseId);
+        console.log("Course ID:", courseId);
+        setTimeout(() => {
+        navigate(`/resultEntry`);
+        }, 100); // Delay ensures localStorage is ready
+    };
     
-    const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  try {
-    const response = await axios.get(`http://localhost:5000/api/courses/by-dept-session-semester`, {
-      params: {
-        departmentId,
-        levelId,
-        sessionId,
-        semesterId
-      }
-    });
-
-    setCourses(response.data);
-
-  } catch (err) {
-    console.error("Error fetching courses for result entry:", err);
-  }
-};
-
-  };
     return (
         <Layout>
           <div className='form create'>
-          <h2> Fill in the following to Computer Results</h2>
+          <h2> Fill in the following to Computer Results</h2><br /><br />
           <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <div>
@@ -143,15 +156,15 @@ function Result() {
                         </div>
                     </div>
                     
-                    <input type="submit" value="Add" className="button" />
+                    <input type="submit" value="Get Courses" className="button" />
                 </form>
           </div>
               
-           {departments.map(department => (
-                <Item
-                    key={department.id}
-                    text={department.name} // Assuming department has a 'name' field
-                    departmentId={department.id}
+           {courses.map(course => (
+                <CourseItem  
+                    key={course.id}
+                    title={course.title} // Assuming department has a 'name' field
+                    courseId={course.id}
                     onSelect={handleSelect} // Pass down the select handler
                 />
             ))}       

@@ -2,31 +2,36 @@ body{
   margin: 0%;
   padding: 0%;
 }
-
 .content {
   margin-top: 40px;
   margin-left: 230px;
 }
 .head{
+  height: 70px;
   width:100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff; /* White background for the header */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .header{
   /* border-bottom: 1px solid rgb(160, 4, 4); */
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: space-between;
   height: 70px;
+  margin-bottom: 25px;
   /* background-color: hsl(240, 5%, 93%); */
+}
+.header h2{
+  margin-left: 100px;
 }
 .search{
   display: flex;
   align-items: center;
    margin-left: auto; 
+   margin-right: 40px;
   /* justify-content: space-around; */
 }
 .search input{
@@ -38,9 +43,9 @@ body{
     padding: 0 15px;
 }
 .search button{
- width: 40%;
+ width: 20%;
  height: 30px;
- margin: 0 5%;
+ margin: 0 3%;
 padding: 0 15px;
 font-size: 13px !important;
 border-radius: 5px; 
@@ -269,10 +274,11 @@ td input {
   font-size: 14px;
 }
 table{
+  place-self: center;
   width: 100%;
   max-width: 980px;
   font-size: 14px;
-  margin: 0%;
+  margin: 0% !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   overflow: hidden;
