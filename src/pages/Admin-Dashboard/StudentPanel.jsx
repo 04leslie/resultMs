@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function StudentPanel() {
     const [sessionId, setSessionId] = useState('');
     const [semesterId, setSemesterId] = useState('');
+    const navigate = useNavigate();
 
     const [sessions, setSessions] = useState([]);
     const [semesters, setSemesters] = useState([]);
@@ -20,12 +21,24 @@ function StudentPanel() {
     };
             
     
-            fetchSemester();
-            fetchSessions();
-        }, []);
+        fetchSemester();
+        fetchSessions();
+    }, []);
+
     const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!sessionId || !semesterId) {
+        alert('Please select both session and semester');
+        return;
     }
+
+        localStorage.setItem('studentSession', sessionId);
+        localStorage.setItem('studentSemester', semesterId);
+
+    navigate('/card');
+    }
+
   return (
     <div className='form'>
                 <h2>Select Session and Semester</h2>

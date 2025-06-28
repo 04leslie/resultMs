@@ -6,11 +6,14 @@ function ResultEntry() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const meta = JSON.parse(localStorage.getItem("resultMeta"));
   const courseId = localStorage.getItem("selectedCourseId");
-  const levelId = localStorage.getItem("levelId");
-  const sessionId = localStorage.getItem("sessionId");
-  const semesterId = localStorage.getItem("semesterId");
-  const departmentId = localStorage.getItem("departmentId");
+  
+  const levelId = meta?.levelId;
+  const sessionId = meta?.sessionId;
+  const departmentId = meta?.departmentId;
+  const semesterId = meta?.semesterId;
+
   const navigate = useNavigate();
     
   useEffect(() => {
@@ -106,6 +109,10 @@ function ResultEntry() {
   const resultsToSend = students.map(student => ({
     student_matricule: student.matricule,
     course_id: courseId,
+    department_id: departmentId,
+    level_id: levelId,
+    session_id: sessionId,
+    semester_id: semesterId,
     ca_mark: student.ca_mark,
     exam_mark: student.exam_mark,
     total: student.total,
@@ -114,10 +121,7 @@ function ResultEntry() {
     grade_point: student.gradePoint,
     evaluation: student.evaluation,
     observation: student.observation,
-    session_id: sessionId,
-    semester_id: semesterId,
-    level_id: levelId,
-    department_id: departmentId
+ 
   }));
 
   try {
@@ -125,7 +129,7 @@ function ResultEntry() {
 
     await axios.post('http://localhost:5000/api/result', { students: resultsToSend });
     alert('Results submitted successfully!');
-    navigate('/result');
+    navigate('/results');
   } catch (err) {
     console.error('Error submitting results:', err);
     alert('Failed to submit results.');

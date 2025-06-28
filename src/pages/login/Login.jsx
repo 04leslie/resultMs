@@ -1,29 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 
 function Login() {
+  const [matricule, setMatricule] = useState('');
+  const navigate = useNavigate();
 
-  function togglePlan(){
-    let selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/student/login', {
+        matricule
+      });
 
-    if (selectedPlan === "student") {
-      document.getElementById("student").style.display = "block"
-      document.getElementById("admin").style.display = "none"
-    }else {
-      document.getElementById("student").style.display = "none"
-      document.getElementById("admin").style.display = "block"
+      alert('Login successful');
+      console.log(response.data.student);
+
+      //store student info in localStorage
+      localStorage.setItem('student', JSON.stringify(response.data.student));
+
+      //navigate to dashboard
+       navigate('/studentpanel');
+    } catch (error) {
+      alert('Invalid matricule');
+      console.error(error);
     }
-  }
+  };
+
+  // function togglePlan(){
+  //   let selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+
+  //   if (selectedPlan === "student") {
+  //     document.getElementById("student").style.display = "block"
+  //     document.getElementById("admin").style.display = "none"
+  //   }else {
+  //     document.getElementById("student").style.display = "none"
+  //     document.getElementById("admin").style.display = "block"
+  //   }
+  // }
   return (
     <div className='form'>
-         <h1 style={{textAlign:'center', color:'#343a40'}}> Login</h1>
-        
-          <form action="" method="post">
-            <label for="">Matricule:</label><br/>
-            <input class="input" name="email" type="text" /><br/>
-            <input type="submit" name="submit" value="Login" class="button"/><br />
-
+         <h1 style={{ textAlign: 'center', color: '#343a40' }}>Login</h1>
+          <form onSubmit={handleSubmit}>
+            <label>Matricule:</label><br />
+            <input
+              className="input"
+              value={matricule}
+              onChange={(e) => setMatricule(e.target.value)}
+              type="text"
+              required
+            /><br />
+            <input type="submit" name="submit" value="Login" className="button" /><br />
           </form>
     </div>
   )

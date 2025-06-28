@@ -179,7 +179,7 @@ label{
     height: 28px;
     border: 1px solid #ccc; /* Light border */
     border-radius: 3px; /* Rounded corners */
-    font-size: 16px;
+    font-size: 13px;
     width: 99%;
     outline: none;
   }
@@ -289,7 +289,7 @@ table{
   border: none;
 }
 .selected{
-  background-color: hsl(228, 4%, 48%);
+  background-color: hsl(66, 88%, 75%);
 }
 .click{
   display: flex;
@@ -298,12 +298,17 @@ table{
   align-items: center;
 }
 .button-results{
-  padding: 1% 2%;
+  padding: 1% 3%;
   color: white;
   border-radius: 3px;
   text-decoration: none;
+  border: 1px solid rgb(211, 43, 43);
   background-color: rgb(211, 43, 43);
   margin-right: 2%;
+}
+.download{
+  padding: 1% 3%;
+  /* width: 100px; */
 }
 button{
   padding: 1% 2%;
@@ -404,4 +409,71 @@ button{
 .addstudent-button:active {
   background-color: #003f80;
   transform: scale(0.98);
+}
+/* complaints */
+.complaints-container {
+  padding: 20px;
+}
+.header {
+  color: #0052cc;
+  margin-bottom: 15px;
+}
+.complaints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.complaint-item {
+  border: 1px solid #ccc;
+  padding: 12px;
+  cursor: pointer;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+.complaint-item:hover {
+  background-color: #e6f0ff;
+}
+.status {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.status.pending {
+  color: #c9302c;
+}
+.status.replied {
+  color: green;
+}
+.chat-view {
+  padding: 20px;
+}
+.message-box {
+  margin-bottom: 20px;
+}
+.bubble {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 5px 0;
+}
+.bubble.student {
+  background-color: #d9eaff;
+}
+.bubble.admin {
+  background-color: #c1f0c1;
+}
+.reply-form textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+.reply-form button {
+  background-color: #0052cc;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
 }
