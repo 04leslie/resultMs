@@ -18,7 +18,7 @@ function AdminSidebar() {
       
         <div className='sidebar-admin'>
             <div className="first">
-              <img src={Logo} alt="" />
+              <img src={Logo} alt="logo" />
             </div>
             
           <Link className={`section ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">

@@ -23,7 +23,6 @@ function SelectSchool() {
                 <Link
                     to="/selectdepart"
                     className="box"
-                    style={{ backgroundColor: 'rgb(8, 195, 195)', border: '1px solid rgb(8, 195, 195)' }}
                     onClick={() => handleSchoolSelect('1')} // Store Level 1
                 >
                     <p>School of Engineering</p>
@@ -31,7 +30,6 @@ function SelectSchool() {
                 <Link
                     to="/selectdepart"
                     className="box"
-                    style={{ backgroundColor: 'rgb(211, 43, 43)', border: 'rgb(211, 43, 43)' }}
                     onClick={() => handleSchoolSelect('2')} // Store Level 2
                 >
                     <p>School of Health</p>
@@ -39,7 +37,6 @@ function SelectSchool() {
                 <Link
                     to="/selectdepart"
                     className="box"
-                    style={{ backgroundColor: 'rgb(169, 66, 169)', border: '1px solid rgb(169, 66, 169)' }}
                     onClick={() => handleSchoolSelect('3')} // Store Level 3
                 >
                     <p>School of Management</p>
@@ -47,7 +44,6 @@ function SelectSchool() {
                 <Link
                     to="/selectdepart"
                     className="box"
-                    style={{ backgroundColor: 'hsl(231, 11%, 63%)', border: '1px solid hsl(231, 11%, 63%)' }}
                     onClick={() => handleSchoolSelect('4')} // Store Level 4
                 >
                     <p>School of Education</p>

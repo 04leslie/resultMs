@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -10,12 +11,21 @@ function Card() {
   const [totalGradePoints, setTotalGradePoints] = useState(0);
   const [GPA, setGPA] = useState(0);
   const [diplomaClass, setDiplomaClass] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchResults = async () => {
       const student = JSON.parse(localStorage.getItem('student'));
       const sessionId = localStorage.getItem('studentSession');
       const semesterId = localStorage.getItem('studentSemester');
+      const sessionName = localStorage.getItem('studentSessionName');
+      const semesterName = localStorage.getItem('studentSemesterName');
+
+      setStudentInfo({
+      ...student,
+      sessionName,
+      semesterName
+    });
 
       try {
         const response = await axios.get('http://localhost:5000/api/result/student-results', {
@@ -96,7 +106,7 @@ function Card() {
           </tr>
           <tr>
             <th colSpan={4}>Name: <span>{studentInfo.name}</span></th>
-            <th colSpan={4}>Matricule: <span>{studentInfo.matricule}</span></th>
+            <th colSpan={4}>Matricule: <span>{studentInfo.matricule}</span> <br /> Session: <span>{studentInfo.sessionName}</span></th>
             <th colSpan={4}>Speciality: <span>{studentInfo.department_name}</span></th>
           </tr>
           <tr>
@@ -157,9 +167,10 @@ function Card() {
     </div>
 
     <div className="click">
-      <button onClick={() => window.location.href = "/complaints"} className='button-results'>
+      <button onClick={() => navigate('/studentcomplaint')} className='button-results'>
         Contest Results
       </button>
+
       <button onClick={downloadPDF} className='download'>Download Results</button>
     </div>
   </div>

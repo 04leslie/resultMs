@@ -73,7 +73,7 @@ useEffect(() => {
   useEffect(() => {
   axios.get('http://localhost:5000/api/courses')
     .then(res => {
-      console.log("Courses response:", res.data); //Checking if this is an array
+      console.log("Courses response:", res.data); 
       if (Array.isArray(res.data)) {
         setCourses(res.data);
       } else {
@@ -188,7 +188,13 @@ useEffect(() => {
               </div>
         
               <div className="session-table">
-                <h2>Existing Courses</h2>
+                <div className="header">
+              <h2>Existing Courses</h2>
+              <form className="search">
+              <input type="text" placeholder="Search..." value=""/>
+                <button className='button' type="submit">Search</button>
+              </form>
+            </div>
                 <table className='session-table'>
                     <thead>
                         <tr>

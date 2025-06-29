@@ -32,35 +32,42 @@ function StudentPanel() {
         alert('Please select both session and semester');
         return;
     }
+        const selectedSession = sessions.find(s => s.id === parseInt(sessionId));
+        const selectedSemester = semesters.find(s => s.id === parseInt(semesterId));
 
         localStorage.setItem('studentSession', sessionId);
         localStorage.setItem('studentSemester', semesterId);
+        localStorage.setItem('studentSessionName', selectedSession?.name || '');
+        localStorage.setItem('studentSemesterName', selectedSemester?.name || '');
 
     navigate('/card');
     }
 
   return (
-    <div className='form'>
-                <h2>Select Session and Semester</h2>
-                <form onSubmit={handleSubmit} >
-                            <br /><label>Session:</label><br />
-                            <select value={sessionId} onChange={(e) => setSessionId(e.target.value)} className='input'>
-                                <option value="">-- Select Session --</option>
-                                {sessions.map(session => (
-                                    <option key={session.id} value={session.id}>{session.name}</option>
-                                ))}
-                            </select><br /><br />
-                            <label>Semester:</label><br />
-                            <select value={semesterId} onChange={(e) => setSemesterId(e.target.value)} className='input'>
-                                <option value="">-- Select Semester --</option>
-                                {semesters.map(semester => (
-                                    <option key={semester.id} value={semester.id}>{semester.name}</option>
-                                ))}
-                            </select><br /><br />
-                    
-                    <input type="submit" name="submit" value="Retrieve Results" className="button" />
-                </form>
-              </div>
+    <div>
+        
+        <div className='form'>
+                    <h2>Select Session and Semester</h2>
+                    <form onSubmit={handleSubmit} >
+                                <br /><label>Session:</label><br />
+                                <select value={sessionId} onChange={(e) => setSessionId(e.target.value)} className='input'>
+                                    <option value="">-- Select Session --</option>
+                                    {sessions.map(session => (
+                                        <option key={session.id} value={session.id}>{session.name}</option>
+                                    ))}
+                                </select><br /><br />
+                                <label>Semester:</label><br />
+                                <select value={semesterId} onChange={(e) => setSemesterId(e.target.value)} className='input'>
+                                    <option value="">-- Select Semester --</option>
+                                    {semesters.map(semester => (
+                                        <option key={semester.id} value={semester.id}>{semester.name}</option>
+                                    ))}
+                                </select><br /><br />
+        
+                        <input type="submit" name="submit" value="Retrieve Results" className="button" />
+                    </form>
+                  </div>
+    </div>
   )
 }
 

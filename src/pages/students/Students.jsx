@@ -23,7 +23,6 @@ function Students() {
                 <Link
                     to="/selectschool"
                     className="box"
-                    style={{ backgroundColor: 'hsl(190, 65%, 60%)', border: '1px solid hsl(190, 65%, 60%)' }}
                     onClick={() => handleLevelSelect('1')} // Store Level 1
                 >
                     <p>Level 1</p>
@@ -31,7 +30,6 @@ function Students() {
                 <Link
                     to="/selectschool"
                     className="box"
-                    style={{ backgroundColor: 'hsl(355, 60%, 60%)', border: 'hsl(355, 60%, 60%)' }}
                     onClick={() => handleLevelSelect('2')} // Store Level 2
                 >
                     <p>Level 2</p>
@@ -39,7 +37,6 @@ function Students() {
                 <Link
                     to="/selectschool"
                     className="box"
-                    style={{ backgroundColor: 'hsl(260, 50%, 65%)', border: '1px solid hsl(260, 50%, 65%)' }}
                     onClick={() => handleLevelSelect('3')} // Store Level 3
                 >
                     <p>Level 3</p>
@@ -47,7 +44,6 @@ function Students() {
                 <Link
                     to="/selectschool"
                     className="box"
-                    style={{ backgroundColor: 'hsl(220, 15%, 65%)', border: '1px solid hsl(220, 15%, 65%)' }}
                     onClick={() => handleLevelSelect('4')} // Store Level 4
                 >
                     <p>Level 4</p>
@@ -55,7 +51,6 @@ function Students() {
                 <Link
                     to="/selectschool"
                     className="box"
-                    style={{ backgroundColor: 'hsl(30, 80%, 70%)', border: '1px solid hsl(30, 80%, 70%)' }}
                     onClick={() => handleLevelSelect('5')} // Store Level 5
                 >
                     <p>Level 5</p>

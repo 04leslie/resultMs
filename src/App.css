@@ -240,7 +240,6 @@ label{
   color: #007bff;
   background-color: #e9ecef;;
 }
-
 .icon-d, .icon{
   
   margin-right: 10px;
@@ -250,7 +249,11 @@ label{
 .card{
   padding: 1%;
   place-self: center;
-  border: 2px solid hsl(231, 11%, 63%);
+  margin:5% 5%;
+}
+#result-card{
+padding: 1%;
+border: 1px solid rgba(38, 38, 38);
 }
 .heading{
   background-color: hsl(231, 11%, 63%);
@@ -258,6 +261,9 @@ label{
 th, td{
   padding: 8px;
   border: 1px solid #e0e0e0;
+}
+#result-card th{
+  background-color: rgba(38, 38, 38, );
 }
 th{
   background-color: hsl(231, 11%, 63%);
@@ -328,6 +334,8 @@ button{
   width: 12%;
   padding: 3%;
   height: 80px;
+  background-color: #94c7fd;
+  border: 1px solid #007bff;
   color: white;
   font-size: 19px;
   text-align: center;
@@ -335,6 +343,7 @@ button{
   border-radius: 3px;
 }
 .box:hover{
+  background-color: #71b3fa;
   cursor: pointer;
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -425,6 +434,8 @@ button{
 }
 .complaint-item {
   border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
   padding: 12px;
   cursor: pointer;
   background: #f9f9f9;
@@ -447,27 +458,39 @@ button{
 .chat-view {
   padding: 20px;
 }
+.chat-view p, .chat-view h3 {
+  text-align: center;
+}
 .message-box {
   margin-bottom: 20px;
 }
 .bubble {
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   max-width: 400px;
   margin: 5px 0;
 }
 .bubble.student {
   background-color: #d9eaff;
+  border: 1px solid #0052cc
 }
 .bubble.admin {
+  margin-left: auto; 
+  border: 1px solid #5ef55e;
   background-color: #c1f0c1;
 }
+.reply-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .reply-form textarea {
-  width: 100%;
+  width: 60%;
   height: 100px;
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
+  outline: none;
 }
 .reply-form button {
   background-color: #0052cc;
@@ -477,3 +500,107 @@ button{
   margin-top: 10px;
   cursor: pointer;
 }
+.student-complaint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.student-complaint textarea{
+  width: 60%;
+  height: 100px;
+}
+.student-complaint h3{
+  color: #0052cc;
+}
+.chat-box {
+  margin-top: 20px;
+}
+.complaint-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  resize: vertical;
+}
+.submit-btn {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 60%;
+  border-radius: 5px;
+}
+
+.submit-btn:hover {
+  background-color: #003f80;
+}
+
+@media screen and (max-width: 480px) {
+  .student-complaint {
+    padding: 12px;
+  }
+
+  .submit-btn {
+    font-size: 12px;
+  }
+  .form {
+    /* margin-top: 50px; */
+    width: 80%;
+    margin: 30% auto; /* Center the form horizontally */
+    display: flex;
+    flex-direction: column;
+    padding: 15px; /* Increased padding for better spacing */
+    background-color: white;
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+.choice{
+  padding: 20px;
+  margin-top: 40% auto;
+  text-align: center;
+  place-self: center;
+}
+.choice p{
+  font-size: 50px;
+  font-weight: bold;
+}
+.div{
+  text-decoration: none;
+  margin:0 5% 5% 5% px;
+  text-align: center;
+  padding: 25px 50px;
+  border-radius: 3px;
+  background-color: #abcff5;
+  border: 2px solid #007bff;
+}
+.card{
+  /* padding: 1%; */
+  place-self: center;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: auto;
+}
+#result-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  background-color: white;
+  overflow-x: auto;  /* Enables scrolling for wide tables */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+} 

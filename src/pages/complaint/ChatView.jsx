@@ -56,7 +56,9 @@ function ChatView() {
 
         {/* Display messages */}
         <div className="message-box">
-          <p><strong>Complaint:</strong></p>
+            <p className="chat-meta">
+                Session: {complaint.session_name} | Semester: {complaint.semester_name} <br />
+            </p>
           <div className="bubble student">{complaint.complaint_text}</div>
 
           {/* If there's a reply, display it */}
