@@ -18,6 +18,21 @@ function Courses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
+    if (!sessionId) return; // Prevent request if sessionId is empty
+  
+    const fetchLevels = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/levels/${sessionId}`);
+        setLevels(response.data);
+      } catch (error) {
+        console.error('Error fetching levels:', error);
+      }
+    };
+  
+    fetchLevels();
+   }, [sessionId]); 
+
+  useEffect(() => {
   if (levelId) {
     axios.get(`http://localhost:5000/api/departments/by-level/${levelId}`)
       .then(res => {
@@ -29,19 +44,6 @@ function Courses() {
       });
   }
   }, [levelId]);
-  
-  useEffect(() => {
-  axios.get('http://localhost:5000/api/levels')
-    .then(res => {
-     
-        setLevels(res.data);
-     
-    })
-    .catch(err => {
-      console.error("Error fetching levels:", err);
-      setLevels([]);
-});
-},[]);
     
 useEffect(() => {
     axios.get('http://localhost:5000/api/sessions')
@@ -57,18 +59,20 @@ useEffect(() => {
 
 },[]);
 
-useEffect(() => {
-    axios.get('http://localhost:5000/api/semesters')
-  .then(res => {
-      setSemesters(res.data);
-   
-  })
-  .catch(err => {
-    console.error("Error fetching semester:", err);
-    setSemesters([]);
-  });
+  useEffect(() => {
+    if (!sessionId) return; // Prevent request if sessionId is empty
+  
+    const fetchSemesters = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/semesters/${sessionId}`);
+        setSemesters(response.data);
+      } catch (error) {
+        console.error('Error fetching levels:', error);
+      }
+  };
 
-},[]);
+    fetchSemesters();
+  }, [sessionId]);
 
   useEffect(() => {
   axios.get('http://localhost:5000/api/courses')
@@ -103,7 +107,7 @@ useEffect(() => {
   try {
     await axios.post('http://localhost:5000/api/courses', newCourse);
     // Refresh course list
-    const response = await axios.get('/api/http://localhost:5000/api/courses');
+    const response = await axios.get('http://localhost:5000/api/courses');
     setCourses(response.data);
     // Reset form
     setTitle('');

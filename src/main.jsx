@@ -22,11 +22,12 @@ import Complaints from './pages/complaint/Complaints.jsx'
 import StudentComplaint from './pages/complaint/StudentComplaint.jsx'
 import ChatView from './pages/complaint/ChatView.jsx'
 import Courses from './pages/courses/Courses.jsx'
+import Selectsession from './pages/students/SelectSession.jsx'
 const router = createBrowserRouter([
   {path:'/', element:<App />},
   {path:'/login', element:<Login />},
   {path:'/loginAdmin', element:<LoginAdmin />},
-  {path:'/register', element:<Register />},
+  {path:'/addAdmin', element:<Register />},
   {path:'/card', element:<Card />},
   {path:'/session', element:<Session />},
   {path:'/dashboard', element:<AdminDashboard />},
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
   {path:'/results', element:<Result />},
   {path:'/selectschool', element:<SelectSchool />},
   {path:'/selectdepart', element:<SelectDepart />},
+  {path:'/selectsession', element:<Selectsession />},
   {path:'/addstudent', element:<AddStudent />},
   {path:'/complaints', element:<Complaints />},
   {path:'/studentcomplaint', element:<StudentComplaint />},

@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { faSchool } from '@fortawesome/free-solid-svg-icons'
 import Layout from '../../components/layout/Layout'
 import Item from '../../components/Item';
 
 const SelectDepart = () => {
     const navigate = useNavigate();
     const [departments, setDepartments] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const schoolId = localStorage.getItem('selectedSchool');
         const levelId = localStorage.getItem('selectedLevel');
+        const sessionId = localStorage.getItem('selectedSession');
 
 
         // Fetch departments based on faculty and level
         const fetchDepartments = async () => {
             try {
-            const response = await axios.get(`http://localhost:5000/api/departments?schoolId=${schoolId}&levelId=${levelId}`);
+            const response = await axios.get(`http://localhost:5000/api/departments/filter?facultyId=${schoolId}&levelId=${levelId}&sessionId=${sessionId}`);
             setDepartments(response.data);
             setLoading(false);
             } catch (err) {
@@ -42,6 +47,7 @@ const SelectDepart = () => {
                 </h3>
                 {departments.map(department => (
                     <Item
+                        
                         key={department.id}
                         text={department.name} // Assuming department has a 'name' field
                         departmentId={department.id}

@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Layout from '../../components/layout/Layout'
+import SearchBar from '../../components/SearchBar';
+
 
 function Session() {
   const [sessions, setSessions] = useState([]);
   const [sessionName, setSessionName] = useState('');
 
-  // Fetch existing sessions
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredSessions, setFilteredSessions] = useState([]);
+  
   useEffect(() => {
     fetchSessions();
   }, []);
+
+  const handleSearchChange = (e) => {
+  setSearchTerm(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    const filtered = sessions.filter((session) =>
+      session.name.includes(searchTerm) ||
+      String(session.id).includes(searchTerm)
+    );
+    setFilteredSessions(filtered); 
+  }; 
 
   const fetchSessions = async () => {
     const response = await axios.get('http://localhost:5000/api/sessions');
@@ -38,7 +56,7 @@ function Session() {
     });
 
     
-    const levels = ['L100', 'L200', 'L300', 'L400', 'L500'];
+    const levels = ['100', '200', '300', '400', '500'];
     for (const levelName of levels) {
       await axios.post('http://localhost:5000/api/levels', {
         name: levelName,
@@ -68,20 +86,24 @@ function Session() {
           <div className="session-table">
             <div className="header">
               <h2>Existing Sessions</h2>
-              <form className="search">
-              <input type="text" placeholder="Search..." value=""/>
-                <button className='button' type="submit">Search</button>
-              </form>
+              <SearchBar
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onSubmit={handleSearchSubmit}
+                placeholder="Search sessions..."
+            />
             </div>
             <table className='session-table'>
-                <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    {/* <th>Status</th> */}
-                    <th>Action</th>
-                </tr>
+                <thead>
+                  <tr>
+                      <th>S/N</th>
+                      <th>Name</th>
+                      {/* <th>Status</th> */}
+                      <th>Action</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  {sessions.map((session, index) => (
+                  {(searchTerm ? filteredSessions : sessions).map((session, index) => (
                   <tr key={session.id}>
                   <td>{index + 1}</td>
                   <td>{session.name}</td>

@@ -29,17 +29,6 @@ function Login() {
     }
   };
 
-  // function togglePlan(){
-  //   let selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-
-  //   if (selectedPlan === "student") {
-  //     document.getElementById("student").style.display = "block"
-  //     document.getElementById("admin").style.display = "none"
-  //   }else {
-  //     document.getElementById("student").style.display = "none"
-  //     document.getElementById("admin").style.display = "block"
-  //   }
-  // }
   return (
     <div className='form'>
          <h1 style={{ textAlign: 'center', color: '#343a40' }}>Login</h1>

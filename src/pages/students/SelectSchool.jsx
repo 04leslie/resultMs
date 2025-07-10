@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout'
-import Box from '../../components/Box'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUsersGear } from '@fortawesome/free-solid-svg-icons'
+import { faStethoscope } from '@fortawesome/free-solid-svg-icons'
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpenReader } from '@fortawesome/free-solid-svg-icons'
+
 
 function SelectSchool() {
-    const navigate = useNavigate(); // Hook to programmatically navigate
+    const navigate = useNavigate(); 
 
-    // Function to handle level selection and navigation
+    
     const handleSchoolSelect = (schoolId) => {
         // Store the selected level in local storage
         localStorage.setItem('selectedSchool', schoolId); 
-        navigate('/selectdepart'); // Navigate to the next step
+        console.log('selectedSchool:', schoolId);
+        navigate('/selectdepart');
     };
 
   return (
@@ -21,31 +27,35 @@ function SelectSchool() {
             </h3>
             <div className='admin'>
                 <Link
-                    to="/selectdepart"
+                    to=""
                     className="box"
-                    onClick={() => handleSchoolSelect('1')} // Store Level 1
+                    onClick={() => handleSchoolSelect('1')} 
                 >
+                    <FontAwesomeIcon icon={faUsersGear} size="3x" className='icon'/>
                     <p>School of Engineering</p>
                 </Link>
                 <Link
-                    to="/selectdepart"
+                    to=""
                     className="box"
-                    onClick={() => handleSchoolSelect('2')} // Store Level 2
+                    onClick={() => handleSchoolSelect('2')} 
                 >
+                    <FontAwesomeIcon icon={faStethoscope} size="3x" className='icon'/>
                     <p>School of Health</p>
                 </Link>
                 <Link
-                    to="/selectdepart"
+                    to=""
                     className="box"
-                    onClick={() => handleSchoolSelect('3')} // Store Level 3
+                    onClick={() => handleSchoolSelect('3')} 
                 >
+                    <FontAwesomeIcon icon={faBriefcase} size="3x" className='icon'/>
                     <p>School of Management</p>
                 </Link>
                 <Link
-                    to="/selectdepart"
+                    to=""
                     className="box"
-                    onClick={() => handleSchoolSelect('4')} // Store Level 4
+                    onClick={() => handleSchoolSelect('4')} 
                 >
+                    <FontAwesomeIcon icon={faBookOpenReader} size="3x" className='icon'/>
                     <p>School of Education</p>
                 </Link>
                 

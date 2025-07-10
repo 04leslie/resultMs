@@ -17,23 +17,23 @@ function AdminDashboard() {
             </p>
         <div className='admin'>
             <Link to="/department" className="box" >
-                <FontAwesomeIcon icon={faSchool} size="2x" className='icon-d'/>
+                <FontAwesomeIcon icon={faSchool} size="3x" className='icon-d'/>
                 <p>Departments</p>
             </Link>
-            <Link to="/students" className="box" >
-                <FontAwesomeIcon icon={faUserGraduate} size="2x" className='icon-d'/>
+            <Link to="/selectsession" className="box" >
+                <FontAwesomeIcon icon={faUserGraduate} size="3x" className='icon-d'/>
                 <p>Students</p>
             </Link>
             <Link to="/courses" className="box" >
-                <FontAwesomeIcon icon={faBook} size="2x" className='icon-d'/>
+                <FontAwesomeIcon icon={faBook} size="3x" className='icon-d'/>
                 <p>Courses</p>
             </Link>
             <Link to="/results" className="box" >
-                <FontAwesomeIcon icon={faFile} size="2x" className='icon-d'/>
+                <FontAwesomeIcon icon={faFile} size="3x" className='icon-d'/>
                 <p>Results</p>
             </Link>
             <Link to="/results" className="box">
-                <FontAwesomeIcon icon={faMessage} size="2x" className='icon-d'/>
+                <FontAwesomeIcon icon={faMessage} size="3x" className='icon-d'/>
                 <p>Complaints</p>
             </Link>
         </div>

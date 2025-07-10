@@ -14,14 +14,13 @@ function AdminSidebar() {
   const location = useLocation();
 
   return (
-    <div>
-      
+    <div> 
         <div className='sidebar-admin'>
             <div className="first">
               <img src={Logo} alt="logo" />
             </div>
             
-          <Link className={`section ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
+          <Link className={`section ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard" >
             <FontAwesomeIcon icon={faHouse} className='icon'/> Dashboard
           </Link>
 
@@ -33,7 +32,7 @@ function AdminSidebar() {
                 <FontAwesomeIcon icon={faSchool} className='icon'/> Departments
               </Link>
 
-              <Link className={`section ${location.pathname === "/students" ? "active" : ""}`} to="/students">
+              <Link className={`section ${location.pathname === "/selectsession" ? "active" : ""}`} to="/selectsession">
                 <FontAwesomeIcon icon={faUserGraduate} className='icon'/> Students
               </Link>
   
