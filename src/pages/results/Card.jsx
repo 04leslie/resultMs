@@ -99,7 +99,7 @@ function Card() {
       
         <thead>
           <tr>
-            <th className='heading' colSpan={12}>First Semester Results</th>
+            <th className='heading' colSpan={12}> {studentInfo.semesterName} Results</th>
           </tr>
           <tr>
             <td className='space'></td>
@@ -108,6 +108,11 @@ function Card() {
             <th colSpan={4}>Name: <span>{studentInfo.name}</span></th>
             <th colSpan={4}>Matricule: <span>{studentInfo.matricule}</span> <br /> Session: <span>{studentInfo.sessionName}</span></th>
             <th colSpan={4}>Speciality: <span>{studentInfo.department_name}</span></th>
+          </tr>
+          <tr>
+            <th colSpan={4}>Session: <span>{studentInfo.sessionName}</span></th>
+            <th colSpan={4}>Semester: <span>{studentInfo.semesterName}</span></th>
+            <th colSpan={4}>Level: <span>{studentInfo.level_name}</span></th>
           </tr>
           <tr>
             <th>S/N</th>

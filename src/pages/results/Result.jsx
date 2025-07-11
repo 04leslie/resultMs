@@ -19,10 +19,37 @@ function Result() {
 
   // Fetch existing sessions
   useEffect(() => {
-    const fetchSemester = async () => {
-        const response = await axios.get('http://127.0.0.1:5000/api/semesters');
+    if (!sessionId) return; // Prevent request if sessionId is empty
+  
+    const fetchSemesters = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/semesters/${sessionId}`);
         setSemesters(response.data);
+      } catch (error) {
+        console.error('Error fetching levels:', error);
+      }
+  };
+
+    fetchSemesters();
+  }, [sessionId]);
+
+  useEffect(() => {
+    if (!sessionId) return; 
+  
+    const fetchLevels = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/levels/${sessionId}`);
+        setLevels(response.data);
+      } catch (error) {
+        console.error('Error fetching levels:', error);
+      }
     };
+  
+    fetchLevels();
+   }, [sessionId]); 
+
+  useEffect(() => {
+    
     const fetchSessions = async () => {
         const response = await axios.get('http://127.0.0.1:5000/api/sessions');
         setSessions(response.data);
@@ -32,15 +59,9 @@ function Result() {
         setSchools(response.data);
     };
     
-    const fetchLevels = async () => {
-        const response = await axios.get('http://127.0.0.1:5000/api/levels'); 
-        setLevels(response.data);
-    };
    
-    fetchSemester();
     fetchSessions();
     fetchSchools();
-    fetchLevels();
   }, []);
 
    useEffect(() => {

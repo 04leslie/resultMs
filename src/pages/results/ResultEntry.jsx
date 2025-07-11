@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../../components/layout/Layout'
 function ResultEntry() {
 
   const [students, setStudents] = useState([]);
@@ -139,57 +140,59 @@ function ResultEntry() {
     };
 
   return (
-    <div>
-      <h2>Enter Students Scores</h2>
-      <form onSubmit={handleSubmit}>
-        <table style={{placeSelf:'center', width:'100%'}}>
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Student Matricule</th>
-              <th>Student Name</th>
-              <th>CA_Mar/30</th>
-              <th>Exam_Mark/70</th>
-              <th>Total Mark</th>
-              <th>Avg</th>
-              <th>Evaluation</th>
-              <th>Grade</th>
-              <th>Grade Point</th>
-              <th>Observation</th>
-            </tr>
-          </thead>
-          <tbody>
-              {students.map((student, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{student.matricule}</td>
-                <td>{student.name}</td>
-                
-                <td>
-                    <input type="number" value={student.ca_mark} 
-                    onChange={(e) => handleChange(index, 'ca_mark', e.target.value)} />
-                </td>
-                <td>
-                    <input type="number" value={student.exam_mark} 
-                    onChange={(e) => handleChange(index, 'exam_mark', e.target.value)} />
-                </td>
-                <td>{student.total}</td>
-                <td>{student.avg}</td>
-                <td>{student.evaluation}</td>
-                <td>{student.grade}</td>
-                <td>{student.gradePoint}</td>
-                <td>{student.observation}</td>
+    <Layout>
+      <div>
+        <h2>Enter Students Scores</h2>
+        <form onSubmit={handleSubmit}>
+          <table style={{placeSelf:'center', width:'100%'}}>
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Student Matricule</th>
+                <th>Student Name</th>
+                <th>CA_Mar/30</th>
+                <th>Exam_Mark/70</th>
+                <th>Total Mark</th>
+                <th>Avg</th>
+                <th>Evaluation</th>
+                <th>Grade</th>
+                <th>Grade Point</th>
+                <th>Observation</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          <button className='addstudent-button' type="submit" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Results'}
-          </button>
-        </div>
-        </form>
-    </div>
+            </thead>
+            <tbody>
+                {students.map((student, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{student.matricule}</td>
+                  <td>{student.name}</td>
+      
+                  <td>
+                      <input type="number" value={student.ca_mark}
+                      onChange={(e) => handleChange(index, 'ca_mark', e.target.value)} />
+                  </td>
+                  <td>
+                      <input type="number" value={student.exam_mark}
+                      onChange={(e) => handleChange(index, 'exam_mark', e.target.value)} />
+                  </td>
+                  <td>{student.total}</td>
+                  <td>{student.avg}</td>
+                  <td>{student.evaluation}</td>
+                  <td>{student.grade}</td>
+                  <td>{student.gradePoint}</td>
+                  <td>{student.observation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ textAlign: 'center', marginTop: '10px' }}>
+            <button className='addstudent-button' type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit Results'}
+            </button>
+          </div>
+          </form>
+      </div>
+    </Layout>
   )
 }
 

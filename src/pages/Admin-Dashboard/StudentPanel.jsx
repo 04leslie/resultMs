@@ -9,19 +9,28 @@ function StudentPanel() {
 
     const [sessions, setSessions] = useState([]);
     const [semesters, setSemesters] = useState([]);
+    
+     useEffect(() => {
+        if (!sessionId) return; // Prevent request if sessionId is empty
+      
+        const fetchSemesters = async () => {
+          try {
+            const response = await axios.get(`http://localhost:5000/api/semesters/${sessionId}`);
+            setSemesters(response.data);
+          } catch (error) {
+            console.error('Error fetching levels:', error);
+          }
+      };
+    
+        fetchSemesters();
+      }, [sessionId]);
+    
     useEffect(() => {
-        // Fetch sessions and semesters from the API
-        const fetchSemester = async () => {
-        const response = await axios.get('http://127.0.0.1:5000/api/semesters');
-        setSemesters(response.data);
-    };
         const fetchSessions = async () => {
         const response = await axios.get('http://127.0.0.1:5000/api/sessions');
         setSessions(response.data);
     };
             
-    
-        fetchSemester();
         fetchSessions();
     }, []);
 
